@@ -6,9 +6,8 @@ honeybadger.configure(api_key='a735bce1')
 
 app = Flask(__name__)
 
-
 @app.route("/")
-def index():
+def home():
     return render_template("home.html")
 
 @app.route("/signin")
