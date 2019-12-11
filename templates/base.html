@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    {# ~~~~~~~~~~~~~ Third party styles ~~~~~~~~~~~~~~~~ #}
     {# Libs CSS #}
     <link rel="stylesheet" href="./static/fonts/Feather/feather.css">
     <link rel="stylesheet" href="./static/libs/flickity/dist/flickity.min.css">
@@ -13,6 +14,9 @@
     <link rel="stylesheet" href="./static/libs/jarallax/dist/jarallax.css">
     <link rel="stylesheet" href="./static/libs/highlightjs/styles/vs2015.css">
     <link rel="stylesheet" href="./static/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+
+    {# CDN CSS #}
+    {% block styles %}{% endblock styles %}
 
     {# Map #}
     <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
@@ -100,7 +104,7 @@
                         Products
                     </h6>
 
-                    {# List #}
+                    {# List of produces #}
                     <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
                         <li class="mb-3">
                             <a href="#!" class="text-reset">
@@ -127,7 +131,7 @@
                         Services
                     </h6>
 
-                    {# List #}
+                    {# List of services #}
                     <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
                         <li class="mb-3">
                             <a href="#!" class="text-reset">
@@ -159,7 +163,7 @@
                         Connect
                     </h6>
 
-                    {# List #}
+                    {# Things to connect to #}
                     <ul class="list-unstyled text-muted mb-0">
                         <li class="mb-3">
                             <a href="#!" class="text-reset">
@@ -187,7 +191,7 @@
                         Legal
                     </h6>
 
-                    {# List #}
+                    {# Legal stuff #}
                     <ul class="list-unstyled text-muted mb-0">
                         <li class="mb-3">
                             <a href="#!" class="text-reset">
@@ -208,6 +212,8 @@
 
     {# JAVASCRIPT
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
+
+    {# ~~~~~~~~~~~~~ Third party scripts ~~~~~~~~~~~~~~~~ #}
     {# Libs JS #}
     <script src="./static/libs/jquery/dist/jquery.min.js"></script>
     <script src="./static/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -224,6 +230,9 @@
     <script src="./static/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
     <script src="./static/libs/isotope-layout/dist/isotope.pkgd.min.js"></script>
     <script src="./static/libs/imagesloaded/imagesloaded.pkgd.min.js"></script>
+
+    {# CDN JS #}
+    {% block scripts %}{% endblock scripts %}
 
     {# Map #}
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
