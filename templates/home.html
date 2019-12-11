@@ -1,67 +1,130 @@
 {% extends "base.html" %}
+{% block styles %}
+    <link href="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.css" rel="stylesheet">
+{% endblock styles %}
+
 {% block content %}
-    {# WELCOME
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
+    {# ~~~~~~~~~~~~~~~~~~ WELCOME ~~~~~~~~~~~~~~~~~~~~ #}
     <section class="pt-8 pb-11 pt-md-9 pb-md-12 py-lg-14 bg-light bg-between" style="background-image: url(static/img/illustrations/kingdom-6-cropped.png), url(static/img/illustrations/kingdom-8-cropped.png);">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-10 col-lg-7 text-center" data-aos="fade-up">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-7 text-center" data-aos="fade-up">
 
-            {# Image mobile resize #}
-            <img src="static/img/illustrations/kingdom-8.png" alt="..." class="img-fluid mb-6 d-lg-none">
+                    {# Image mobile resize #}
+                    <img src="static/img/illustrations/kingdom-8.png" alt="..." class="img-fluid mb-6 d-lg-none">
 
-            {# Heading #}
-            <h1 class="display-2 font-weight-bold">
-                Sampling music has<br>
-                never been easier.
-            </h1>
+                    {# Heading #}
+                    <h1 class="display-2 font-weight-bold">
+                        Sampling music has<br>
+                        never been easier.
+                    </h1>
 
-            {# Subtitle #}
-            <p class="font-size-lg text-muted mb-6 mb-md-8">
-                Forward thinking producers use Sound Sieve to enhance
-                the sampling process.
-            </p>
+                    {# Subtitle #}
+                    <p class="font-size-lg text-muted mb-6 mb-md-8">
+                        Forward thinking producers use Sound Sieve to enhance
+                        their sampling process.
+                    </p>
 
-            {# Call to action #}
-            <a href="#!" class="btn btn-primary mr-1 lift">
-              Get started <i class="fe fe-arrow-right ml-3"></i>
-            </a>
+                    {# Call to action #}
+                    <a class="UppyModalOpenerBtn btn btn-primary mr-1 lift text-white">
+                        Get started <i class="fe fe-arrow-right ml-3"></i>
+                    </a>
 
+                    <a href="#!" class="btn btn-primary-soft lift">
+                        Learn more
+                    </a>
 
-            <a href="#!" class="btn btn-primary-soft lift">
-              Learn more
-            </a>
-
-          </div>
-        </div> {# /row #}
-      </div> {# /container #}
+                </div>
+            </div> {# /row #}
+        </div> {# /container #}
     </section>
+    <div class="dashboardContainer"></div>
 
     {# SHAPE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
     <div class="position-relative">
-      <div class="shape shape-bottom shape-fluid-x svg-shim text-white">
-        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"/>
-        </svg>
-      </div>
+        <div class="shape shape-bottom shape-fluid-x svg-shim text-white">
+            <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"/>
+            </svg>
+        </div>
     </div>
 
-    {# PRICING
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
+    {# ~~~~~~~~~~~~~~~~~ SPACING SECTION ~~~~~~~~~~~~~~~~~~~~~~ #}
     <section class="mt-n8">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="50">
 
-          </div>
-          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
-              <br><br><br><br><br><br><br><br>
-          </div>
-          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="150">
+                </div>
+                <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <br><br><br><br><br><br><br><br>
+                </div>
+                <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="150">
 
 
-          </div>
-        </div> {# / row #}
-      </div> {# / container #}
+                </div>
+            </div> {# / row #}
+        </div> {# / container #}
     </section>
+
 {% endblock content %}
+
+{% block scripts %}
+    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script> #}
+    <link href="https://transloadit.edgly.net/releases/uppy/robodog/v1.3.0/robodog.min.css" rel="stylesheet">
+    <script src="https://transloadit.edgly.net/releases/uppy/robodog/v1.3.0/robodog.min.js"></script>
+    <script src="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.js"></script>
+    <script>
+
+        const uppy = Uppy.Core({
+            debug: true,
+            autoProceed: false,
+            restrictions: {
+                maxFileSize: 1000000,
+                maxNumberOfFiles: 3,
+                minNumberOfFiles: 2,
+                allowedFileTypes: ['image/*', 'audio/*']
+            }
+        })
+        uppy.use(Uppy.Dashboard, {
+            trigger: '.UppyModalOpenerBtn',
+            inline: false,
+            target: '.dashboardContainer',
+            replaceTargetContent: true,
+            showProgressDetails: true,
+            note: 'Images and video only, 2–3 files, up to 1 MB',
+            height: 470,
+            metaFields: [
+            { id: 'name', name: 'Name', placeholder: 'file name' },
+            { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' }
+            ],
+            browserBackButtonClose: true
+        })
+        uppy.use(Uppy.GoogleDrive, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' });
+        uppy.use(Uppy.Dropbox, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' });
+        uppy.use(Uppy.Webcam, { target: Uppy.Dashboard });
+        uppy.use(Uppy.Tus, { endpoint: 'https://master.tus.io/files/' });
+
+        uppy.on('complete', result => {
+            console.log('successful files:', result.successful)
+            console.log('failed files:', result.failed)
+        })
+
+        // TODO: Finish transloadit setup
+        document.getElementById('browser').addEventListener('click', function () {
+            var uppy = window.Robodog.pick({
+                debug: true,
+                providers: [ 'url', 'webcam', 'dropbox', 'google-drive' ],
+                waitForEncoding: true,
+                params: {
+                    // To avoid tampering, consider using Signature Authentication
+                    auth: { key: '20ff383b0b2b49a79643d1874edf5a3f' },
+                    template_id: '646e1a699b604944bd951ed0a580d2bc'
+                }
+            }).then(function (bundle) {
+                console.log(bundle.transloadit) // Array of Assembly Statuses
+                console.log(bundle.results)     // Array of all Assembly Results
+            }).catch(console.error)
+        })
+    </script>
+{% endblock scripts %}
