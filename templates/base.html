@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <script src="https://cdnjs.com/libraries/bodymovin" type="text/javascript"></script>
+    <script src="https://cdnjs.com/libraries/lottie-web" type="text/javascript"></script>
+
     {# ~~~~~~~~~~~~~ Third party styles ~~~~~~~~~~~~~~~~ #}
     {# Libs CSS #}
     <link rel="stylesheet" href="./static/fonts/Feather/feather.css">
@@ -76,21 +79,23 @@
     </nav>
 {% endblock navbar %}
 
-    {# CONTENT
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
-    {% block content %}{% endblock content %}
+    {# ~~~~~~~~~~~~~~~~~~~~~~ CONTENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
+    {% block content %}
+        It's not like it's the first time this has happened.
+    {% endblock content %}
 
 
 
-    {# FOOTER
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
+    {# ~~~~~~~~~~~~~~~~~~~~~~ FOOTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
     <footer class="py-8 py-md-11 bg-gray-200">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-4 col-lg-3">
 
                     {# Brand #}
-                    <img src="./static/img/logo/vector/default-monochrome.svg" height=1 alt="..." class="footer-brand img-fluid mb-2">
+                    <a href="/">
+                        <img src="./static/img/logo/vector/default-monochrome.svg" height=1 alt="..." class="footer-brand img-fluid mb-2">
+                    </a>
 
                     {# Text #}
                     <p class="text-gray-700 mb-2">
@@ -141,7 +146,7 @@
                         </li>
                         <li class="mb-3">
                             <a href="#!" class="text-reset">
-                                Audio Upscale
+                                Upscale Audio
                             </a>
                         </li>
                         <li class="mb-3">
@@ -233,6 +238,7 @@
     <script src="./static/libs/imagesloaded/imagesloaded.pkgd.min.js"></script>
 
     {# CDN JS #}
+    <script src="https://cdnjs.com/libraries/bodymovin" type="text/javascript"></script>
 
     {# Page-dependent scripts #}
     {% block scripts %}{% endblock scripts %}

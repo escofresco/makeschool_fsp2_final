@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block styles %}
+<link href="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.css" rel="stylesheet">
+<style>
+    #filestackContainer {
+        height: 400px;
+        width: 500px;
+    }
+</style>
+{% endblock styles %}
+
+{% block content %}
+<h1 class="cover-heading">instant text analysis</h1>
+{# <p class="lead">add a recording, text file, or image of a text file for instant analysis.</p>
+<p class="lead">
+<a href="#" class="btn btn-lg btn-secondary cursor-hover green-bg green-color-hover yellow-outline-hover black-bg-hover black-color">open camera</a>
+<a href="#" class="btn btn-lg btn-secondary cursor-hover red-bg red-color-hover yellow-outline-hover black-bg-hover black-color">start recording</a>
+<a href="#" class="btn btn-lg btn-secondary cursor-hover purple-bg purple-color-hover yellow-outline-hoverblack-bg-hover black-color">upload file</a>
+</p> #}
+{# <div id="filestackContainer"></div> #}
+<br><br><br><br><br><br><br>
+<div class="dashboardContainer"></div>
+
+{% endblock content %}
+{% block scripts %}
+{# <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script> #}
+<link href="https://transloadit.edgly.net/releases/uppy/robodog/v1.3.0/robodog.min.css" rel="stylesheet">
+<script src="https://transloadit.edgly.net/releases/uppy/robodog/v1.3.0/robodog.min.js"></script>
+<script src="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.js"></script>
+<script>
+
+// const apikey = "AeV8ellXtTqqpGxpL5juTz";
+// const client = filestack.init(apikey);
+// const options = {
+//         displayMode: 'inline',
+//         container: '#filestackContainer',
+// };;
+// client.picker(options).open();
+
+const uppy = Uppy.Core({
+    debug: true,
+    autoProceed: false,
+    restrictions: {
+        maxFileSize: 1000000,
+        maxNumberOfFiles: 3,
+        minNumberOfFiles: 2,
+        allowedFileTypes: ['image/*', 'audio/*']
+    }
+})
+uppy.use(Uppy.Dashboard, {
+    trigger: '.UppyModalOpenerBtn',
+    inline: false,
+    target: '.dashboardContainer',
+    replaceTargetContent: true,
+    showProgressDetails: true,
+    note: 'Images and video only, 2–3 files, up to 1 MB',
+    height: 470,
+    metaFields: [
+        { id: 'name', name: 'Name', placeholder: 'file name' },
+        { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' }
+    ],
+    browserBackButtonClose: true
+})
+uppy.use(Uppy.GoogleDrive, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' });
+uppy.use(Uppy.Dropbox, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' });
+uppy.use(Uppy.Webcam, { target: Uppy.Dashboard });
+uppy.use(Uppy.Tus, { endpoint: 'https://master.tus.io/files/' });
+
+uppy.on('complete', result => {
+    console.log('successful files:', result.successful)
+    console.log('failed files:', result.failed)
+})
+
+// TODO: Finish transloadit setup
+document.getElementById('browser').addEventListener('click', function () {
+  var uppy = window.Robodog.pick({
+    debug: true,
+    providers: [ 'url', 'webcam', 'dropbox', 'google-drive' ],
+    waitForEncoding: true,
+    params: {
+      // To avoid tampering, consider using Signature Authentication
+      auth: { key: '20ff383b0b2b49a79643d1874edf5a3f' },
+      template_id: '646e1a699b604944bd951ed0a580d2bc'
+    }
+  }).then(function (bundle) {
+    console.log(bundle.transloadit) // Array of Assembly Statuses
+    console.log(bundle.results)     // Array of all Assembly Results
+  }).catch(console.error)
+})
+</script>
+{% endblock scripts %}

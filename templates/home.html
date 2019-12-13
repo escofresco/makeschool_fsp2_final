@@ -8,10 +8,10 @@
     <section class="pt-8 pb-11 pt-md-9 pb-md-12 py-lg-14 bg-light bg-between" style="background-image: url(static/img/illustrations/kingdom-6-cropped.png), url(static/img/illustrations/kingdom-8-cropped.png);">
         <div class="container">
             <div class="row justify-content-center">
-                <div data-jarallax-element="-20" class="col-12 col-md-10 col-lg-7 text-center" data-aos="fade-up">
+                <div data-jarallax-element="-10" class="col-12 col-md-10 col-lg-7 text-center" data-aos="fade-up">
 
                     {# Image mobile resize #}
-                    <img data-jarallax-element="-30" data-speed="1" src="static/img/illustrations/kingdom-8.png" alt="..." class="img-fluid mb-6 d-lg-none">
+                    <img data-jarallax-element="-20" data-speed="1" src="static/img/illustrations/kingdom-8.png" alt="..." class="img-fluid mb-6 d-lg-none">
 
                     {# Heading #}
                     <h1 class="display-2 font-weight-bold">
@@ -22,13 +22,26 @@
                     {# Subtitle #}
                     <p class="font-size-lg text-muted mb-6 mb-md-8">
                         Forward thinking producers use Sound Sieve to enhance
-                        their sampling process.
+                        their creative process.
                     </p>
 
                     {# Call to action #}
                     <a class="UppyModalOpenerBtn btn btn-primary mr-1 lift text-white">
-                        Get started <i class="fe fe-arrow-right ml-3"></i>
+                        Get started {# <i class="fe fe-arrow-right ml-3"></i> #}
+                        <img src="static/imgs/icons/animated-icons/upload/upload.svg" id="lottie" />
                     </a>
+
+                    {# TODO: Get lottie to work with animated-icons #}
+                    <script>
+                    var animation = bodymovin.loadAnimation({
+container: document.getElementById('lottie'), // Required
+path: 'static/imgs/icons/animated-icons/upload/upload.json', // Required
+renderer: 'svg/canvas/html', // Required
+loop: true, // Optional
+autoplay: true, // Optional
+name: "Hello World", // Name for future reference. Optional.
+})
+                    </script>
 
                     <a href="#!" class="btn btn-primary-soft lift">
                         Learn more
@@ -70,7 +83,7 @@
 {% endblock content %}
 
 {% block scripts %}
-    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script> #}
+    {# <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script> #}
     <link href="https://transloadit.edgly.net/releases/uppy/robodog/v1.3.0/robodog.min.css" rel="stylesheet">
     <script src="https://transloadit.edgly.net/releases/uppy/robodog/v1.3.0/robodog.min.js"></script>
     <script src="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.js"></script>
@@ -85,7 +98,7 @@
                 minNumberOfFiles: 2,
                 allowedFileTypes: ['image/*', 'audio/*']
             }
-        })
+        });
         uppy.use(Uppy.Dashboard, {
             trigger: '.UppyModalOpenerBtn',
             inline: false,
@@ -99,7 +112,7 @@
             { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' }
             ],
             browserBackButtonClose: true
-        })
+        });
         uppy.use(Uppy.GoogleDrive, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' });
         uppy.use(Uppy.Dropbox, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' });
         uppy.use(Uppy.Webcam, { target: Uppy.Dashboard });
@@ -108,7 +121,7 @@
         uppy.on('complete', result => {
             console.log('successful files:', result.successful)
             console.log('failed files:', result.failed)
-        })
+        });
 
         // TODO: Finish transloadit setup
         document.getElementById('browser').addEventListener('click', function () {
@@ -125,6 +138,6 @@
                 console.log(bundle.transloadit) // Array of Assembly Statuses
                 console.log(bundle.results)     // Array of all Assembly Results
             }).catch(console.error)
-        })
+        });
     </script>
 {% endblock scripts %}
